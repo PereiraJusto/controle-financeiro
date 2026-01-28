@@ -18,3 +18,26 @@ class Categoria(models.Model):
 
     def __str__(self):
         return self.nome
+    
+class Lancamento(models.Model):
+    pessoa = models.ForeignKey(
+        Pessoa,
+        on_delete=models.PROTECT,
+        related_name="lancamentos"
+    )
+    categoria = models.ForeignKey(
+        Categoria,
+        on_delete=models.PROTECT,
+        related_name="lancamentos"
+    )
+    data_evento = models.DateField()
+    valor = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+    ativo = models.BooleanField(default=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
+    atualizado_em = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.data_evento} | {self.valor}"
