@@ -41,3 +41,20 @@ class Lancamento(models.Model):
 
     def __str__(self):
         return f"{self.data_evento} | {self.valor}"
+    
+class InstrumentoFinanceiro(models.Model):
+    nome = models.CharField(
+        max_length=100
+    )
+    ativo = models.BooleanField(
+        default=True
+    )
+    criado_em = models.DateTimeField(
+        auto_now_add=True
+    )
+    atualizado_em = models.DateTimeField(
+        auto_now=True
+    )
+
+    def __str__(self):
+        return self.nome

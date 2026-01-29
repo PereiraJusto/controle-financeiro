@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Pessoa, Categoria, Lancamento
+from .models import Pessoa, Categoria, Lancamento, InstrumentoFinanceiro
 
 
 @admin.register(Pessoa)
@@ -17,3 +17,9 @@ class CategoriaAdmin(admin.ModelAdmin):
 @admin.register(Lancamento)
 class LancamentoAdmin(admin.ModelAdmin):
     list_display =("data_evento", "valor", "pessoa", "categoria", "ativo")
+
+@admin.register(InstrumentoFinanceiro)
+class InstrumentoFinanceiro(admin.ModelAdmin):
+    list_display = ("nome", "ativo", "criado_em")
+    list_filter = ("ativo",)
+    search_fields = ("nome",)
